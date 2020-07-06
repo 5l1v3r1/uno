@@ -1,4 +1,4 @@
-﻿#if XAMARIN || __WASM__
+﻿#if XAMARIN || __WASM__ || __NETSTD_REFERENCE__
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -19,8 +19,8 @@ namespace Windows.UI.Xaml.Controls
 		}
 #endif
 
-#if !__WASM__ && !__MACOS__
-		#region Foreground
+#if !__WASM__ && !__MACOS__ && !__NETSTD_REFERENCE__
+#region Foreground
 
 		/// <summary>
 		/// Gets or sets a brush that describes the foreground color (only SolidColorBrush is supported for the moment) 
@@ -36,12 +36,12 @@ namespace Windows.UI.Xaml.Controls
 		}
 
 		public static DependencyProperty ForegroundProperty { get ; } =
-			DependencyProperty.Register("Foreground", typeof(Brush), typeof(ProgressRing), new PropertyMetadata(SolidColorBrushHelper.Black, OnForegroundChanged));
+			DependencyProperty.Register("Foreground", typeof(Brush), typeof(ProgressRing), new PropertyMetadata(defaultValue: SolidColorBrushHelper.Black, propertyChangedCallback: OnForegroundChanged));
 
-		#endregion
+#endregion
 #endif
 
-		#region IsActive
+#region IsActive
 
 		/// <summary>
 		/// Gets or sets a value that indicates whether the <see cref="ProgressRing"/> is showing progress.
@@ -53,9 +53,9 @@ namespace Windows.UI.Xaml.Controls
 		}
 
 		public static DependencyProperty IsActiveProperty { get ; } =
-			DependencyProperty.Register("IsActive", typeof(bool), typeof(ProgressRing), new PropertyMetadata(false, OnIsActiveChanged));
+			DependencyProperty.Register("IsActive", typeof(bool), typeof(ProgressRing), new PropertyMetadata(defaultValue: false, propertyChangedCallback: OnIsActiveChanged));
 
-		#endregion
+#endregion
 	}
 }
 #endif
