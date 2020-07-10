@@ -1,4 +1,4 @@
-﻿#if XAMARIN || __WASM__ || __NETSTD_REFERENCE__
+﻿#if XAMARIN || NETSTANDARD
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -19,8 +19,8 @@ namespace Windows.UI.Xaml.Controls
 		}
 #endif
 
-#if !__WASM__ && !__MACOS__ && !__NETSTD_REFERENCE__
-#region Foreground
+#if !NETSTANDARD && !__MACOS__ && !__NETSTD_REFERENCE__
+		#region Foreground
 
 		/// <summary>
 		/// Gets or sets a brush that describes the foreground color (only SolidColorBrush is supported for the moment) 
