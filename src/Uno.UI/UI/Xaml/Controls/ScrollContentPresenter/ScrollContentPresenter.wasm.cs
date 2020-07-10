@@ -242,10 +242,5 @@ namespace Windows.UI.Xaml.Controls
 				isIntermediate
 			);
 		}
-
-		internal override bool IsViewHit()
-		{
-			return true;
-		}
 	}
 }
